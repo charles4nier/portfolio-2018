@@ -1,6 +1,7 @@
-# y
+# PORTFOLIO-2018
 
-> A new portfolio build with Vue and using WebGl
+> Mon nouveau portfolio.
+> Technos utilisées :HTML5, CSS3, Js, Vue, Three.js
 
 ## Build Setup
 
