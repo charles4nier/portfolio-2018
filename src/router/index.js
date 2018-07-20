@@ -1,15 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import About from '@/components/About'
+import ProjectContainer from '@/components/ProjectContainer'
+import Project from '@/components/Project'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/a-propos',
+      name: 'About',
+      component: About
+    },
+    {
+      path: '/projet',
+      name: 'ProjectContainer',
+      component: ProjectContainer,
+      children: [
+        {
+          path: ':project',
+          name: 'Project',
+          component: Project
+        }
+      ]
     }
   ]
 })

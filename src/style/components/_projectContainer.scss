@@ -1,0 +1,29 @@
+#project-container {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    button {
+        position: relative;
+        width: 80%;
+        border: none;
+        background: none;
+        color: color(yellow);
+        font-size: 15px;
+        cursor: pointer;
+        &:focus {
+            outline: 0;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid color(yellow);
+            opacity: 0.25;
+            border-radius: 50%;
+            top: calc(50% - 40px);
+            left: calc(50% - 40px);
+        }
+    }
+}

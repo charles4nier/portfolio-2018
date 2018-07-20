@@ -1,24 +1,30 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <router-view :dataProject='dataProject'/>
     <nav id="main-nav">
       <li>
-        <a>A propos</a>
+        <router-link to="/a-propos">A propos</router-link>
       </li>
       <li>
-        <a>Projets</a>
-      </li> 
+        <router-link to="/projet/superjoli">Projets</router-link>
+      </li>
       <li>
-        <a>Contact</a>
-      </li>   
+        <a href="">Contact</a>
+      </li>
     </nav>
   </div>
 </template>
 
 <script>
+import dataProject from './constants/dataProject'
+
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      dataProject: dataProject
+    }
+  }
 }
 </script>
 
@@ -29,6 +35,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
