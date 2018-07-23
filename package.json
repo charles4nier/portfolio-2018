@@ -11,6 +11,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "gsap": "^2.0.1",
+    "three": "^0.94.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

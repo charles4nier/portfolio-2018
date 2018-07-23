@@ -10,14 +10,10 @@ body {
     overflow: hidden;
 }
 
-.bottom-right-container {
-    @include flexAlign(row, center, center);
-    position: absolute;
-    width: 25vw;
-    height: 25%;
-    right: 0;
-    bottom: 10%;
-    background-color: color(black);
+button {
+  &:focus {
+    outline: 0;
+  }
 }
 
 li {

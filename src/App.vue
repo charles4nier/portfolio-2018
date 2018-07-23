@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <router-view :dataProject='dataProject'/>
     <nav id="main-nav">
-      <li>
+      <button id="button-main-nav">
+        <span></span>
+      </button>
+     <!--  <li>
         <router-link to="/a-propos">A propos</router-link>
       </li>
       <li>
@@ -10,8 +12,9 @@
       </li>
       <li>
         <a href="">Contact</a>
-      </li>
+      </li> -->
     </nav>
+    <router-view :dataProject='dataProject'/>
   </div>
 </template>
 
@@ -24,16 +27,21 @@ export default {
     return {
       dataProject: dataProject
     }
+  },
+  watch: {
+    '$route' (to, from) {
+      alert('changement')
+    }
   }
 }
 </script>
 
 <style>
 #app {
+  display: flex;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>
