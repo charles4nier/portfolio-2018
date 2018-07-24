@@ -41,8 +41,8 @@ const HoverEffect = function(opts) {
 
             vec4 disp = texture2D(disp, uv);
 
-            vec2 distortedPosition = vec2(uv.x + dispFactor * (disp.r*effectFactor), uv.y);
-            vec2 distortedPosition2 = vec2(uv.x - (1.0 - dispFactor) * (disp.r*effectFactor), uv.y);
+            vec2 distortedPosition = vec2(uv.x - dispFactor * (disp.r*effectFactor), uv.y);
+            vec2 distortedPosition2 = vec2(uv.x + (1.0 - dispFactor) * (disp.r*effectFactor), uv.y);
 
             vec4 _texture = texture2D(texture, distortedPosition);
             vec4 _texture2 = texture2D(texture2, distortedPosition2);
@@ -61,8 +61,7 @@ const HoverEffect = function(opts) {
     let intensity = opts.intensity || 1;
     let speedIn = opts.speedIn || 1.6;
     let speedOut = opts.speedOut || 1.2;
-    // let userHover = (opts.hover === undefined) ? true : opts.hover;
-    let easing = opts.easing || Expo.easeOut;
+    let easing = opts.easing || Expo.easeInOut;
 
     // let mobileAndTabletcheck = function() {
     //   let check = false;
@@ -83,18 +82,13 @@ const HoverEffect = function(opts) {
     camera.position.z = 1;
 
     let renderer = new THREE.WebGLRenderer({
-        antialias: false,
-        // alpha: true
+        antialias: false
     });
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0xffffff, 0.0);
     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
     parent.appendChild(renderer.domElement);
-
-    // let addToGPU = function(t) {
-    //     renderer.setTexture2D(t, 0);
-    // };
 
     let loader = new THREE.TextureLoader();
     loader.crossOrigin = "";
@@ -148,6 +142,7 @@ const HoverEffect = function(opts) {
             // });
         });
 
+        console.log('addEvents');
         // parent.addEventListener(evtOut, function(e) {
         //     TweenMax.to(mat.uniforms.dispFactor, speedOut, {
         //         value: 0,
@@ -157,12 +152,13 @@ const HoverEffect = function(opts) {
     };
 
     // if (userHover) {
-        // addEvents();
+       
     // }
+    
 
-    window.addEventListener('playAnim', function() {
-        addEvents();
-    })
+    // window.addEventListener('playAnim', function() {
+    //     addEvents();
+    // })
     // window.addEventListener("resize", function(e) {
     //     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
     // });
@@ -187,7 +183,23 @@ const HoverEffect = function(opts) {
 
         renderer.render(scene, camera);
     };
+
+
     animate();
+
+    return {
+        anim: function (newSrc) {
+            // texture1 = texture2
+            texture2 = loader.load(newSrc, function() {
+                mat.uniforms.dispFactor.value = 0.0;
+                object.material = mat;
+                addEvents();
+                setTimeout(function() {
+                    texture1 = texture2;
+                }, 1300)
+            });
+        }
+    }
 };
 
 export default HoverEffect;

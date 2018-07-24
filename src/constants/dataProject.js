@@ -1,7 +1,7 @@
 import Superjoli from '../assets/images/superjoli.jpg'
 import Bamboo from '../assets/images/bamboo.jpg'
-// import Disp from '../assets/images/dispFactor.png'
-import Disp from '../assets/images/dispFactor.jpg'
+import Disp from '../assets/images/dispFactor.png'
+// import Disp from '../assets/images/dispFactor.jpg'
 // import Disp from '../assets/images/einstein.jpg'
 // import MusicsPicture from '../assets/img/musics.jpg';
 // import ReviewsPicture from '../assets/img/reviews.jpg';
