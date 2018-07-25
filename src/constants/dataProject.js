@@ -1,5 +1,7 @@
 import Superjoli from '../assets/images/superjoli.jpg'
 import Bamboo from '../assets/images/bamboo.jpg'
+import Ikmusic from '../assets/images/iKmusic.jpg'
+import LearnEat from '../assets/images/learnEat.jpg'
 import Disp from '../assets/images/dispFactor.png'
 // import Disp from '../assets/images/dispFactor.jpg'
 // import Disp from '../assets/images/einstein.jpg'
@@ -45,7 +47,7 @@ const dataProject = [
     src: Bamboo,
     path: 'picturepath',
     span: 'Bamboo Step',
-    presentation: ' est un site réalisé pour mettre en avant un produit novateur : des pailles en bambou. Objet sobre et élégant, le site a pour but de mettre en avant les qualités essentielles de ces nouvelles pailles.',
+    presentation: ' est un site réalisé pour mettre en avant un produit novateur : des pailles en bambou. Objet sobre et élégant, le site souligne les qualités essentielles de ces nouvelles pailles.',
     imgDetail1: 'src',
     imgDetail2: 'src',
     imgDetail3: '',
@@ -70,7 +72,7 @@ const dataProject = [
   { 
     name: 'ik-music',
     title: 'svg.path',
-    path: 'picturepath',
+    src: Ikmusic,
     span: 'Ik Music',
     presentation: ' est un site réalisé pour Idrisse Khelifi, compositeur basé à Paris. Le site a pour but de mettre en avant ses créations audios dans un cadre sobre, dynamique et élégant.',
     imgDetail1: 'src',
@@ -100,9 +102,9 @@ const dataProject = [
   { 
     name: 'learn-eat',
     title: 'svg.path',
-    path: 'picturepath',
-    span: 'Superjoli',
-    presentation: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+    src: LearnEat,
+    span: 'Learn eat',
+    presentation: ' est un site réalisé pour Marie Gaillard qui propose d\'apprendre l\'anglais ou le français en cuisinant. Inspiré par la cuisine et l\'enseignement, il reprend les codes couleurs de la gastronomie tout en restant ludique.',
     imgDetail1: 'src',
     imgDetail2: 'src',
     imgDetail3: '',

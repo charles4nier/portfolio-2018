@@ -2,10 +2,13 @@
     @include flexAlign(row, center, center);
     width: 5%;
     height: 100vh;
-    background-color: color(white2);
+    background-color: color(white3);
     z-index: 1;
     cursor: pointer;
     transition: background-color .2s;
+    background: #1fa2ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #4776E6, #7537f2); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #4776E6, #7537f2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     button {
         @include flexAlign(row, center, center);
         position: relative;
@@ -23,7 +26,7 @@
             top: 45%;
             background-color: color(yellow);
             transform: rotate(90deg);
-            transition: all .4s;
+            transition: all .2s;
         }
         &:before {
             left: -35%;
@@ -51,7 +54,7 @@
         }
     }
     &:hover {
-        background-color: color(white2);
+        background-color: color(white);
         button {
             span {
                 transform: translateX(0);

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { TweenMax } from 'gsap/TweenMax'
+import TweenMax from 'gsap/TweenMax'
 
 /* eslint-disable */
 
@@ -12,7 +12,7 @@ const HoverEffect = function(opts) {
         }
     `;
 
-    var fragmentPrevious = `
+    var fragmentNext = `
         varying vec2 vUv;
 
         uniform sampler2D texture;
@@ -54,7 +54,7 @@ const HoverEffect = function(opts) {
         }
     `;
 
-    var fragmentNext = `
+    var fragmentPrevious = `
         varying vec2 vUv;
 
         uniform sampler2D texture;
@@ -95,14 +95,14 @@ const HoverEffect = function(opts) {
             // gl_FragColor = disp;
         }
     `;
-  
+
     let parent = opts.parent || console.warn("no parent");
     let dispImage = opts.displacementImage || console.warn("displacement image missing");
     let image1 = opts.image1 || console.warn("first image missing");
     let image2 = opts.image2 || console.warn("second image missing");
     let intensity = 1;
-    let speedIn = 1.3;
-    let speedOut = 1.3;
+    let speedIn = .9;
+    let speedOut = .9;
     let easing = opts.easing || Expo.easeInOut;
 
     // let mobileAndTabletcheck = function() {
@@ -142,7 +142,6 @@ const HoverEffect = function(opts) {
     disp.wrapS = disp.wrapT = THREE.RepeatWrapping;
 
     let newMesh = function (img, img2) {
-        console.log(img, '   ', img2);
         texture1 = loader.load(img);
         texture2 = loader.load(img2);
 
@@ -153,14 +152,35 @@ const HoverEffect = function(opts) {
         texture2.anisotropy = renderer.getMaxAnisotropy();
     };
 
-    let updateMat = function(img, img2) {
+    let updateMat = function(img, img2, direction) {
         newMesh(img, img2);
-        mat.uniforms.dispFactor.value = 0.0;
-        mat.uniforms.texture = { type: "t", value: texture1 };
-        mat.uniforms.texture2 = { type: "t", value: texture2 }; 
-        object.material = mat;
+       
+        direction = direction === 'next' ? fragmentNext : fragmentPrevious;
 
-        addEvents();
+        // mat.uniforms.dispFactor.value = 0.0;
+        // mat.uniforms.texture = { type: "t", value: texture1 };
+        // mat.uniforms.texture2 = { type: "t", value: texture2 };
+        // mat.fragmentShader = fragmentPrevious;
+        // mesh.material = mat;
+
+        mat = new THREE.ShaderMaterial({
+            uniforms: {
+                effectFactor: { type: "f", value: intensity },
+                dispFactor: { type: "f", value: 0.0 },
+                texture: { type: "t", value: texture1 },
+                texture2: { type: "t", value: texture2 },
+                disp: { type: "t", value: disp }
+            },
+
+            vertexShader: vertex,
+            fragmentShader: direction,
+            transparent: true,
+            opacity: 1.0
+        });
+
+        mesh.material = mat;
+
+        playTransition();
     };
 
     newMesh(image1, image2);
@@ -185,10 +205,10 @@ const HoverEffect = function(opts) {
         parent.offsetHeight,
         1
     );
-    let object = new THREE.Mesh(geometry, mat);
-    scene.add(object);
+    let mesh = new THREE.Mesh(geometry, mat);
+    scene.add(mesh);
 
-    let addEvents = function(){
+    let playTransition = function(){
         TweenMax.to(mat.uniforms.dispFactor, speedIn, {
             value: 1,
             ease: easing
@@ -224,8 +244,8 @@ const HoverEffect = function(opts) {
     animate();
 
     return {
-        anim: function (newSrc, newSrc2) {
-                updateMat(newSrc, newSrc2);
+        anim: function (newSrc, newSrc2, direction) {
+                updateMat(newSrc, newSrc2, direction);
                 
                 // setTimeout(function() {
                 //     texture1 = texture2;

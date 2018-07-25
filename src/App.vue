@@ -32,31 +32,52 @@ export default {
       dataProject: dataProject,
       projectDetails: [],
       hoverEffect: null,
-      lastSrc: ''
+      lastSrc: '',
+      lastKey: null
     }
   },
   methods: {
-    initProjectDetails: function (callback) {
-      console.log('init')
+    initDirection: function (newDirection) {
+      let key = Number(this.projectDetails[0].key)
+      if ((key === 1 && this.lastKey === this.dataProject.length) || (this.lastKey === 1 && key !== this.dataProject.length) || key > this.lastKey) {
+        newDirection = 'next'
+      } else {
+        newDirection = 'previous'
+      }
+    },
+
+    initData: function (callback) {
       let regex = /(superjoli|bamboo-step|ik-music|learn-eat)/
       let currentPathname = this.$route.path
       let projectName = ''
+      let direction = ''
 
       if (currentPathname.match(regex)) {
         projectName = currentPathname.match(regex)[1]
       }
 
       this.projectDetails = this.dataProject.filter(item => item.name === projectName)
-      console.log(this.projectDetails[0].src)
+
+      let key = Number(this.projectDetails[0].key)
+
+      if ((key === 1 && this.lastKey === this.dataProject.length) || key > this.lastKey) {
+        direction = 'next'
+        if (this.lastKey === 1 && key === this.dataProject.length) {
+          direction = 'previous'
+        }
+      } else {
+        direction = 'previous'
+      }
 
       if (callback) {
-        callback(this.lastSrc, this.projectDetails[0].src)
+        callback(this.lastSrc, this.projectDetails[0].src, direction)
       }
 
       this.lastSrc = this.projectDetails[0].src
+      this.lastKey = this.projectDetails[0].key
     },
     initCanvas: function (callback) {
-      this.initProjectDetails(null)
+      this.initData(null)
 
       this.hoverEffect = HoverEffect({
         parent: this.$refs.canvasContainer,
@@ -72,7 +93,7 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      this.initProjectDetails(this.hoverEffect.anim)
+      this.initData(this.hoverEffect.anim)
     }
   }
 }
