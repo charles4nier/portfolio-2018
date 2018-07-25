@@ -18,6 +18,8 @@
     </div>
     <div id="project-nav-container" :style="{ backgroundColor: projectDetails[0].backgroundColor}">
         <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous"><span data-content="Projet précédent"></span></button><button :data-key="projectDetails[0].key" @click="changePage" data-action="next"><span data-content="Projet suivant"></span></button>
+        <!-- <div id='test'>
+        </div> -->
     </div>
   </aside>
   </div>

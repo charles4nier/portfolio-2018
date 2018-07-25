@@ -31,11 +31,13 @@ export default {
     return {
       dataProject: dataProject,
       projectDetails: [],
-      hoverEffect: null
+      hoverEffect: null,
+      lastSrc: ''
     }
   },
   methods: {
-    initProjectDetails: function () {
+    initProjectDetails: function (callback) {
+      console.log('init')
       let regex = /(superjoli|bamboo-step|ik-music|learn-eat)/
       let currentPathname = this.$route.path
       let projectName = ''
@@ -45,15 +47,19 @@ export default {
       }
 
       this.projectDetails = this.dataProject.filter(item => item.name === projectName)
+      console.log(this.projectDetails[0].src)
+
+      if (callback) {
+        callback(this.lastSrc, this.projectDetails[0].src)
+      }
+
+      this.lastSrc = this.projectDetails[0].src
     },
-    initCanvas: function () {
-      this.initProjectDetails()
+    initCanvas: function (callback) {
+      this.initProjectDetails(null)
 
       this.hoverEffect = HoverEffect({
         parent: this.$refs.canvasContainer,
-        intensity: 0.7,
-        speedIn: 1.1,
-        speedOut: 1.1,
         easing: undefined,
         image1: this.projectDetails[0].src,
         image2: this.projectDetails[0].src,
@@ -62,12 +68,11 @@ export default {
     }
   },
   mounted () {
-    this.initCanvas()
+    this.initCanvas(null, null)
   },
   watch: {
     '$route' (to, from) {
-      this.initProjectDetails()
-      this.hoverEffect.anim(this.projectDetails[0].src)
+      this.initProjectDetails(this.hoverEffect.anim)
     }
   }
 }

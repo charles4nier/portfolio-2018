@@ -12,7 +12,49 @@ const HoverEffect = function(opts) {
         }
     `;
 
-    var fragment = `
+    var fragmentPrevious = `
+        varying vec2 vUv;
+
+        uniform sampler2D texture;
+        uniform sampler2D texture2;
+        uniform sampler2D disp;
+
+        // uniform float time;
+        // uniform float _rot;
+        uniform float dispFactor;
+        uniform float effectFactor;
+
+        // vec2 rotate(vec2 v, float a) {
+        //  float s = sin(a);
+        //  float c = cos(a);
+        //  mat2 m = mat2(c, -s, s, c);
+        //  return m * v;
+        // }
+
+        void main() {
+
+            vec2 uv = vUv;
+
+            // uv -= 0.5;
+            // vec2 rotUV = rotate(uv, _rot);
+            // uv += 0.5;
+
+            vec4 disp = texture2D(disp, uv);
+
+            vec2 distortedPosition = vec2(uv.x + dispFactor * (disp.r*effectFactor), uv.y);
+            vec2 distortedPosition2 = vec2(uv.x - (1.0 - dispFactor) * (disp.r*effectFactor), uv.y);
+
+            vec4 _texture = texture2D(texture, distortedPosition);
+            vec4 _texture2 = texture2D(texture2, distortedPosition2);
+
+            vec4 finalTexture = mix(_texture, _texture2, dispFactor);
+
+            gl_FragColor = finalTexture;
+            // gl_FragColor = disp;
+        }
+    `;
+
+    var fragmentNext = `
         varying vec2 vUv;
 
         uniform sampler2D texture;
@@ -58,9 +100,9 @@ const HoverEffect = function(opts) {
     let dispImage = opts.displacementImage || console.warn("displacement image missing");
     let image1 = opts.image1 || console.warn("first image missing");
     let image2 = opts.image2 || console.warn("second image missing");
-    let intensity = opts.intensity || 1;
-    let speedIn = opts.speedIn || 1.6;
-    let speedOut = opts.speedOut || 1.2;
+    let intensity = 1;
+    let speedIn = 1.3;
+    let speedOut = 1.3;
     let easing = opts.easing || Expo.easeInOut;
 
     // let mobileAndTabletcheck = function() {
@@ -92,20 +134,38 @@ const HoverEffect = function(opts) {
 
     let loader = new THREE.TextureLoader();
     loader.crossOrigin = "";
-    let texture1 = loader.load(image1);
-    let texture2 = loader.load(image2);
+
+    let texture1, texture2, mat;
 
     let disp = loader.load(dispImage);
 
     disp.wrapS = disp.wrapT = THREE.RepeatWrapping;
 
-    texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
-    texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
+    let newMesh = function (img, img2) {
+        console.log(img, '   ', img2);
+        texture1 = loader.load(img);
+        texture2 = loader.load(img2);
 
-    texture1.anisotropy = renderer.getMaxAnisotropy();
-    texture2.anisotropy = renderer.getMaxAnisotropy();
+        texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
+        texture1.minFilter = texture2.minFilter = THREE.LinearFilter;
 
-    let mat = new THREE.ShaderMaterial({
+        texture1.anisotropy = renderer.getMaxAnisotropy();
+        texture2.anisotropy = renderer.getMaxAnisotropy();
+    };
+
+    let updateMat = function(img, img2) {
+        newMesh(img, img2);
+        mat.uniforms.dispFactor.value = 0.0;
+        mat.uniforms.texture = { type: "t", value: texture1 };
+        mat.uniforms.texture2 = { type: "t", value: texture2 }; 
+        object.material = mat;
+
+        addEvents();
+    };
+
+    newMesh(image1, image2);
+
+    mat = new THREE.ShaderMaterial({
         uniforms: {
             effectFactor: { type: "f", value: intensity },
             dispFactor: { type: "f", value: 0.0 },
@@ -115,7 +175,7 @@ const HoverEffect = function(opts) {
         },
 
         vertexShader: vertex,
-        fragmentShader: fragment,
+        fragmentShader: fragmentNext,
         transparent: true,
         opacity: 1.0
     });
@@ -129,39 +189,15 @@ const HoverEffect = function(opts) {
     scene.add(object);
 
     let addEvents = function(){
-        // let evtIn = "mouseenter";
-        // let evtOut = "mouseleave";
-        // if (mobileAndTabletcheck()) {
-        //     evtIn = "touchstart";
-        //     evtOut = "touchend";
-        // }
-        // parent.addEventListener(evtIn, function(e) {
-            TweenMax.to(mat.uniforms.dispFactor, speedIn, {
-                value: 1,
-                ease: easing
-            // });
+        TweenMax.to(mat.uniforms.dispFactor, speedIn, {
+            value: 1,
+            ease: easing
         });
-
-        console.log('addEvents');
-        // parent.addEventListener(evtOut, function(e) {
-        //     TweenMax.to(mat.uniforms.dispFactor, speedOut, {
-        //         value: 0,
-        //         ease: easing
-        //     });
-        // });
     };
-
-    // if (userHover) {
-       
-    // }
     
-
-    // window.addEventListener('playAnim', function() {
-    //     addEvents();
-    // })
-    // window.addEventListener("resize", function(e) {
-    //     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
-    // });
+    window.addEventListener("resize", function(e) {
+        renderer.setSize(parent.offsetWidth, parent.offsetHeight);
+    });
 
 
     // this.next = function(){
@@ -188,16 +224,12 @@ const HoverEffect = function(opts) {
     animate();
 
     return {
-        anim: function (newSrc) {
-            // texture1 = texture2
-            texture2 = loader.load(newSrc, function() {
-                mat.uniforms.dispFactor.value = 0.0;
-                object.material = mat;
-                addEvents();
-                setTimeout(function() {
-                    texture1 = texture2;
-                }, 1300)
-            });
+        anim: function (newSrc, newSrc2) {
+                updateMat(newSrc, newSrc2);
+                
+                // setTimeout(function() {
+                //     texture1 = texture2;
+                // }, 1300)
         }
     }
 };

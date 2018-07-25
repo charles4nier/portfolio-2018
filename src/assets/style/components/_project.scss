@@ -49,7 +49,8 @@
             font-size: 20px;
             line-height: 1.4;
             span {
-                font-weight: bold;    
+                font-weight: bold;
+                color: color(yellow); 
             }
         }
         ul {
@@ -73,7 +74,7 @@
         @include flexAlign(row, center, center);
         width: 25vw;
         height: 25%;
-        background-color: color(grey4);
+        background-color: color(white2);
         #plus-icon {
           position: absolute;
           width: 10%;
@@ -111,7 +112,7 @@
               position: absolute;              
               width: 110px;
               height: 110px;
-              border: 1px solid color(yellow);
+              border: 1px solid color(black);
               opacity: 0.35;
               border-radius: 50%;
               top: calc(50% - 55px);
@@ -133,7 +134,7 @@
           }
         }
         &:hover {
-          background-color: color(black);
+          background-color: color(white2);
           button {
             &::before {
               width: 60px;
@@ -161,9 +162,17 @@
     }
 
     #project-nav-container {
+      position: relative;
       display: flex;
       width: 25vw;
       height: 25%;
+      // #test {
+      //   position: absolute;
+      //   width: 100%;
+      //   height: 100%;
+      //   background: url('../images/bamboo.jpg') center center no-repeat;
+      //   background-size: cover;
+      // }
       button {
         position: relative;
         cursor: pointer;
@@ -171,7 +180,7 @@
         @include flexAlign(row, center, center);
         position: relative;
         width: 50%;
-        background-color: color(grey4);
+        background-color: color(white2);
         border: none;
         color: color(yellow);
         font-style: italic;
@@ -218,7 +227,7 @@
 
 
         &:hover {
-          background-color: color(black);
+          background-color: color(white2);
           &:before {
             transform: rotate(-40deg) scale(0.6);
           }

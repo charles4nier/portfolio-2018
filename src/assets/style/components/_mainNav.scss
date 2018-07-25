@@ -2,7 +2,7 @@
     @include flexAlign(row, center, center);
     width: 5%;
     height: 100vh;
-    background-color: color(grey4);
+    background-color: color(white2);
     z-index: 1;
     cursor: pointer;
     transition: background-color .2s;
@@ -51,7 +51,7 @@
         }
     }
     &:hover {
-        background-color: color(black);
+        background-color: color(white2);
         button {
             span {
                 transform: translateX(0);
