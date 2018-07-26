@@ -5,7 +5,7 @@
       :duration="{enter:0, leave: 400}">
       <router-view :projectDetails='projectDetails' :changePage='changePage' :key='$route.params.project'></router-view>
     </transition>
-    <ProjectDetail :projectDetails='projectDetails'/>
+    <ProjectDetail :projectDetails='projectDetails' :showDetails="showDetails"/>
   </main>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   props: ['dataProject'],
   data () {
     return {
-      projectDetails: ''
+      projectDetails: '',
+      showDetails: false
     }
   },
   components: {

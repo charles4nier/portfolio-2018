@@ -7,15 +7,25 @@
         <ul class="techno-container">
           <li v-for="(item, index) in projectDetails[0].techno" :key="index">{{item.name}}</li>
         </ul>
+        <div class="blue-calc">
+        </div>
       </div>
        <div id="see-more-container" class="bottom-container">
         <div id="plus-icon"></div>
         <button><span data-content="En savoir plus"></span></button>
+        <div class="blue-calc">
+        </div>
       </div>
       <div id="project-nav-container" :style="{ backgroundColor: projectDetails[0].backgroundColor}">
-          <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous"><span data-content="Projet précédent"></span></button><button :data-key="projectDetails[0].key" @click="changePage" data-action="next"><span data-content="Projet suivant"></span></button>
-          <!-- <div id='test'>
-          </div> -->
+          <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous">
+            <span data-content="Projet précédent"></span>
+            <div class="blue-calc"></div>
+          </button>
+          <button :data-key="projectDetails[0].key" @click="changePage" data-action="next">
+            <span data-content="Projet suivant"></span>
+            <div class="blue-calc">
+            </div>
+          </button>
       </div>
     </aside>
   </div>

@@ -39,11 +39,17 @@ export default {
   methods: {
     initDirection: function (newDirection) {
       let key = Number(this.projectDetails[0].key)
-      if ((key === 1 && this.lastKey === this.dataProject.length) || (this.lastKey === 1 && key !== this.dataProject.length) || key > this.lastKey) {
+
+      if ((key === 1 && this.lastKey === this.dataProject.length) || key > this.lastKey) {
         newDirection = 'next'
+        if (this.lastKey === 1 && key === this.dataProject.length) {
+          newDirection = 'previous'
+        }
       } else {
         newDirection = 'previous'
       }
+
+      return newDirection
     },
 
     initData: function (callback) {
@@ -58,16 +64,7 @@ export default {
 
       this.projectDetails = this.dataProject.filter(item => item.name === projectName)
 
-      let key = Number(this.projectDetails[0].key)
-
-      if ((key === 1 && this.lastKey === this.dataProject.length) || key > this.lastKey) {
-        direction = 'next'
-        if (this.lastKey === 1 && key === this.dataProject.length) {
-          direction = 'previous'
-        }
-      } else {
-        direction = 'previous'
-      }
+      direction = this.initDirection(direction)
 
       if (callback) {
         callback(this.lastSrc, this.projectDetails[0].src, direction)

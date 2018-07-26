@@ -156,27 +156,8 @@ const HoverEffect = function(opts) {
         newMesh(img, img2);
        
         direction = direction === 'next' ? fragmentNext : fragmentPrevious;
-
-        // mat.uniforms.dispFactor.value = 0.0;
-        // mat.uniforms.texture = { type: "t", value: texture1 };
-        // mat.uniforms.texture2 = { type: "t", value: texture2 };
-        // mat.fragmentShader = fragmentPrevious;
-        // mesh.material = mat;
-
-        mat = new THREE.ShaderMaterial({
-            uniforms: {
-                effectFactor: { type: "f", value: intensity },
-                dispFactor: { type: "f", value: 0.0 },
-                texture: { type: "t", value: texture1 },
-                texture2: { type: "t", value: texture2 },
-                disp: { type: "t", value: disp }
-            },
-
-            vertexShader: vertex,
-            fragmentShader: direction,
-            transparent: true,
-            opacity: 1.0
-        });
+        
+        mat = initMat(mat, intensity, 0.0, texture1, texture2, disp, direction);
 
         mesh.material = mat;
 
@@ -185,20 +166,27 @@ const HoverEffect = function(opts) {
 
     newMesh(image1, image2);
 
-    mat = new THREE.ShaderMaterial({
-        uniforms: {
-            effectFactor: { type: "f", value: intensity },
-            dispFactor: { type: "f", value: 0.0 },
-            texture: { type: "t", value: texture1 },
-            texture2: { type: "t", value: texture2 },
-            disp: { type: "t", value: disp }
-        },
 
-        vertexShader: vertex,
-        fragmentShader: fragmentNext,
-        transparent: true,
-        opacity: 1.0
-    });
+    let initMat = function (material, effectFactorValue, dispFacorValue, textureValue, texture2Value, dispValue, fragmentShaderValue) {
+        material = new THREE.ShaderMaterial({
+            uniforms: {
+                effectFactor: { type: "f", value: effectFactorValue },
+                dispFactor: { type: "f", value: dispFacorValue },
+                texture: { type: "t", value: textureValue },
+                texture2: { type: "t", value: texture2Value },
+                disp: { type: "t", value: dispValue }
+            },
+
+            vertexShader: vertex,
+            fragmentShader: fragmentShaderValue,
+            transparent: true,
+            opacity: 1.0
+        });
+
+        return material;
+    }
+
+    mat = initMat(mat, intensity, 0.0, texture1, texture2, disp, fragmentNext);
 
     let geometry = new THREE.PlaneBufferGeometry(
         parent.offsetWidth,
@@ -219,21 +207,6 @@ const HoverEffect = function(opts) {
         renderer.setSize(parent.offsetWidth, parent.offsetHeight);
     });
 
-
-    // this.next = function(){
-    //     TweenMax.to(mat.uniforms.dispFactor, speedIn, {
-    //         value: 1,
-    //         ease: easing
-    //     });
-    // }
-
-    // this.previous = function(){
-    //     TweenMax.to(mat.uniforms.dispFactor, speedOut, {
-    //         value: 0,
-    //         ease: easing
-    //     });
-    // };
-
     let animate = function() {
         requestAnimationFrame(animate);
 
@@ -246,10 +219,6 @@ const HoverEffect = function(opts) {
     return {
         anim: function (newSrc, newSrc2, direction) {
                 updateMat(newSrc, newSrc2, direction);
-                
-                // setTimeout(function() {
-                //     texture1 = texture2;
-                // }, 1300)
         }
     }
 };
