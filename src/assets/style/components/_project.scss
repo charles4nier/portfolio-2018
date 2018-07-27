@@ -34,6 +34,7 @@
         height: 50%;
         padding: 14% 12%;
         background-color: color(white);
+        overflow: hidden;
         p { 
             font-size: 20px;
             line-height: 1.4;
@@ -64,6 +65,7 @@
         width: 25vw;
         height: 25%;
         background-color: color(white3);
+        overflow: hidden;
         #plus-icon {
           position: absolute;
           width: 10%;
@@ -233,6 +235,7 @@
       }
     }
     .blue-calc {
+      z-index: 6;
       position: absolute;
       width: 100%;
       height: 100%;

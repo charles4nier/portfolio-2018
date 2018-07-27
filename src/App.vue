@@ -15,15 +15,15 @@
       </li> -->
     </nav>
     <div id="canvas-container" ref="canvasContainer">
-     <!--  <canvas></canvas> -->
     </div>
-    <router-view :dataProject='dataProject'/>
+    <router-view :dataProject="dataProject" :showProjectDetail="showProjectDetail"/>
   </div>
 </template>
 
 <script>
 import dataProject from './constants/dataProject'
 import HoverEffect from './assets/jsModules/Hover'
+import { TweenMax, TimelineMax } from 'gsap/TweenMax'
 
 export default {
   name: 'App',
@@ -83,6 +83,33 @@ export default {
         image2: this.projectDetails[0].src,
         displacementImage: this.projectDetails[0].disp
       })
+    },
+
+    showProjectDetail: function (showDetail) {
+      let tl = new TimelineMax()
+      tl.to('.blue-calc', 0.3, {xPercent: 100})
+        .to('#canvas-container', 1, {scale: 0.5, ease: Expo.easeInOut}, '-=.6')
+        .to('#main-nav', .5, {scale: 0.5, ease: Expo.easeInOut }, '-=.5')
+        .to('#project-description', .7, {scale: 0.5, ease: Expo.easeInOut}, '-=.7')
+        .to('#see-more-container', .5, {scale: 0.5, ease: Expo.easeInOut}, '-=.5')
+        .to('#project-nav-container button:first-child', .6, {scale: 0.5, ease: Expo.easeInOut}, '-=.5')
+        .to('#see-more-container button:last-child', .6, {scale: 0.5}, '-=.6')
+        .to('#project-detail-container', 0.5, {opacity: 1}, '-=.8')
+        .to('.detail-row', 1.6, {yPercent: -50, opacity: 1, ease: Expo.easeOut},  '-=.9')
+        .to('#project-description', .7, {xPercent: -30}, '-=2.3')
+        // .to('#project-description', .5, {xPercent: -30}, '-=.4')
+  
+
+      tl.pause()
+
+      if (showDetail === true) {
+        tl.play()
+      }  else {
+        console.log('else')
+        tl.reverse()
+      }
+
+      
     }
   },
   mounted () {

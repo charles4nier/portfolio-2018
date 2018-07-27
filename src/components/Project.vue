@@ -1,5 +1,5 @@
 <template>
-  <div id="project-template">
+  <div id="project-template" ref="test">
     <h2>{{projectDetails[0].name}}</h2>
     <aside>
       <div id="project-description">
@@ -10,7 +10,7 @@
         <div class="blue-calc">
         </div>
       </div>
-       <div id="see-more-container" class="bottom-container">
+       <div id="see-more-container" class="bottom-container" @click="show">
         <div id="plus-icon"></div>
         <button><span data-content="En savoir plus"></span></button>
         <div class="blue-calc">
@@ -34,6 +34,17 @@
 <script>
 export default {
   name: 'Project',
-  props: ['projectDetails', 'changePage']
+  props: ['projectDetails', 'changePage', 'showProjectDetail'],
+  data () {
+    return {
+      test: ''
+    }
+  },
+  methods: {
+    show: function () {
+      this.test = true
+      this.showProjectDetail(this.test)
+    }
+  }
 }
 </script>

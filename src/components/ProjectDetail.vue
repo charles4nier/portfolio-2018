@@ -1,5 +1,5 @@
 <template>
-  <div id="project-detail-container" v-if="showDetails">
+  <div id="project-detail-container">
     <h2>{{projectDetails[0].name}}</h2>
     <div id="background-container">
       <div class="background-part"></div>
@@ -11,7 +11,7 @@
       <div class="background-part"></div>
       <div class="background-part"></div>
     </div>
-    <button id="close-detail">
+    <button id="close-detail" @click="hide">
     </button>
     <div id="part-1" class="detail-row">
       <img :src="projectDetails[0].imgDetail1" alt="une photo du projet">
@@ -47,6 +47,16 @@
 <script>
 export default {
   name: 'ProjectDetail',
-  props: ['projectDetails', 'showDetails']
+  props: ['projectDetails', 'showProjectDetail'],
+  data () {
+    return {
+      openDetail: false
+    }
+  },
+  methods: {
+    hide: function () {
+      this.showProjectDetail(this.openDetail)
+    }
+  }
 }
 </script>

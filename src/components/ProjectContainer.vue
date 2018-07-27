@@ -3,9 +3,9 @@
     <transition
       mode="out-in"
       :duration="{enter:0, leave: 400}">
-      <router-view :projectDetails='projectDetails' :changePage='changePage' :key='$route.params.project'></router-view>
+      <router-view :projectDetails='projectDetails' :changePage='changePage' :key='$route.params.project' :showProjectDetail="showProjectDetail"></router-view>
     </transition>
-    <ProjectDetail :projectDetails='projectDetails' :showDetails="showDetails"/>
+    <ProjectDetail :projectDetails='projectDetails' :showProjectDetail="showProjectDetail"/>
   </main>
 </template>
 
@@ -15,11 +15,11 @@ import ProjectDetail from './ProjectDetail'
 
 export default {
   name: 'ProjectContainer',
-  props: ['dataProject'],
+  props: ['dataProject', 'showProjectDetail'],
   data () {
     return {
       projectDetails: '',
-      showDetails: false
+      showDetails: true
     }
   },
   components: {

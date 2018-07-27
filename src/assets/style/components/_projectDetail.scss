@@ -6,7 +6,8 @@
     top: 0;
     left: 0;
     z-index: 10;
-
+    opacity: 0;
+    pointer-events: none;
     h2 {
         position: absolute;
         font-size: 5vw;
@@ -24,6 +25,7 @@
         left: 1%;
         background-color: color(yellow);
       }
+      opacity: 0;
     }
 
     #close-detail {
@@ -31,7 +33,7 @@
         width: 4vw;
         height: 4vw;
         top: 23%;
-        right: calc(10% - 3px);
+        right: 10.2%;
         border: 1px solid color(yellow);
         z-index:1;
         background: none;
@@ -64,7 +66,7 @@
         z-index:1;
         .background-part {
             align-self: center;
-            width: calc(13.3% - 1px);
+            width: 13.3%;
             height: 100%;
             background-color: rgba(255,255,255,0.9);
             &:not(:last-child) {
@@ -73,7 +75,7 @@
 
             &:last-child, 
             &:first-child {
-                width: calc(10% - 1px);
+                width: 10.2%;
             }
         }
     }
@@ -84,6 +86,8 @@
         width: 100%;
         z-index: 2;
         margin-top: 10%;
+        transform: translateY(50%);
+        opacity: 0;
         img {
             align-self: center;
             width: 5%;
@@ -104,7 +108,7 @@
     #part-1 {
         margin-top: 20%;
         img {
-            width: 53.6%;
+            width: 53.2%;
             margin-left: 23.3%;
         }
         div { 
