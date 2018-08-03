@@ -1,30 +1,22 @@
 <template>
   <div id="project-template" ref="test">
-    <h2>{{projectDetails[0].name}}</h2>
     <aside>
       <div id="project-description">
-        <p><span>{{projectDetails[0].span}}</span>{{projectDetails[0].presentation}}</p>
-        <ul class="techno-container">
-          <li v-for="(item, index) in projectDetails[0].techno" :key="index">{{item.name}}</li>
-        </ul>
-        <div class="blue-calc">
-        </div>
+        <p ref="description"><span>{{projectDetails[0].span}}</span>{{projectDetails[0].presentation}}</p>
+        <a :href="projectDetails[0].link" target='_blank'><span data-hover="Visiter le site">Visiter le site</span></a>
       </div>
        <div id="see-more-container" class="bottom-container" @click="show">
         <div id="plus-icon"></div>
         <button><span data-content="En savoir plus"></span></button>
-        <div class="blue-calc">
-        </div>
       </div>
       <div id="project-nav-container" :style="{ backgroundColor: projectDetails[0].backgroundColor}">
+          <div class="blue-calc"></div> 
           <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous">
             <span data-content="Projet précédent"></span>
-            <div class="blue-calc"></div>
+            
           </button>
           <button :data-key="projectDetails[0].key" @click="changePage" data-action="next">
             <span data-content="Projet suivant"></span>
-            <div class="blue-calc">
-            </div>
           </button>
       </div>
     </aside>
@@ -32,6 +24,8 @@
 </template>
 
 <script>
+import { TweenMax, TimelineMax } from 'gsap/TweenMax'
+
 export default {
   name: 'Project',
   props: ['projectDetails', 'changePage', 'showProjectDetail'],
@@ -42,9 +36,27 @@ export default {
   },
   methods: {
     show: function () {
-      this.test = true
-      this.showProjectDetail(this.test)
+      this.$store.state.showDetails = true
+    },
+    hideDescription: function () {
+      let tl = new TimelineMax()
+      tl.to(this.$refs.description, 0.4, {opacity: 0, ease: Expo.easeOut})
+    },
+    showDescription: function () {
+      let tl = new TimelineMax()
+      tl.from(this.$refs.description, 0.5, {opacity: 0, yPercent: 15, ease: Quad.easeOut})
     }
-  }
+  },
+  mounted () {
+    this.showDescription()
+  },
+  beforeDestroy () {
+    this.hideDescription()
+  },
+  // watch: {
+  //   '$route' (to, from) {
+  //     this.hideDescription()
+  //   }
+  // }
 }
 </script>

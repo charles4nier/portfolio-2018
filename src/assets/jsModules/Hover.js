@@ -100,10 +100,10 @@ const HoverEffect = function(opts) {
     let dispImage = opts.displacementImage || console.warn("displacement image missing");
     let image1 = opts.image1 || console.warn("first image missing");
     let image2 = opts.image2 || console.warn("second image missing");
-    let intensity = .3;
-    let speedIn = .9;
+    let intensity = .8;
+    let speedIn = .7;
     let speedOut = .9;
-    let easing = opts.easing || Expo.easeInOut;
+    let easing = Quad.easeInOut;
 
     // let mobileAndTabletcheck = function() {
     //   let check = false;
@@ -193,6 +193,7 @@ const HoverEffect = function(opts) {
         parent.offsetHeight,
         1
     );
+    
     let mesh = new THREE.Mesh(geometry, mat);
     scene.add(mesh);
 

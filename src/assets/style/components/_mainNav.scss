@@ -1,56 +1,14 @@
 #main-nav {
+    position: relative;
     @include flexAlign(row, center, center);
     width: 5%;
     height: 100vh;
     background-color: color(white3);
-    z-index: 1;
+    z-index: -1;
     cursor: pointer;
-    transition: background-color .2s;
-    background: #1fa2ff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #4776E6, #7537f2); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #4776E6, #7537f2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    button {
-        @include flexAlign(row, center, center);
-        position: relative;
-        background: none;
-        border: none; 
-        width: 2vw;
-        height: 2vw;
-        
-        overflow: hidden;
-        &:before, &:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            top: 45%;
-            background-color: color(yellow);
-            transform: rotate(90deg);
-            transition: all .2s;
-        }
-        &:before {
-            left: -35%;
-        }
-
-        &:after {
-            right: -35%;
-        }
-        span {
-            width: 100%;
-            height: 2px;
-            background-color: color(yellow);
-            transform: translateX(-100%);
-            opacity: 0;
-            transition: transform .2s .1s, opacity .1s;
-        }
-    }
-
     li {
         &:not(:last-child) {
             margin-right: 15px;
-        }
-        a {
-            color: color(white2);
         }
     }
     &:hover {
@@ -74,5 +32,120 @@
                 top: calc(100% - 6px);
             }
         }
-    }   
+    }
+    #close-menu {
+        opacity: 1;
+        transform: translateY(0);
+        left: calc(100% + 16vw);
+        z-index: 8;
+        top: 5vh;
+    }
+
+    #link-container , #black-calc {
+        position: absolute;
+        height: 100vh;
+        left: 100%;
+        top: 0;
+    } 
+
+    #link-container {
+        @include flexAlign(column, flex-start, flex-start);
+        width: 36vw;
+        background: color(white2);
+        z-index: 2;
+        cursor: auto;
+        overflow: hidden;
+        padding-top: 12vh;
+        transform: translateX(-100%);
+        li {
+            width: 100%;
+            font-family: 'OpenSans-Bold';
+            padding-left: 20%;
+            font-size: 4vw;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            &.external-link {
+                font-family: 'Roboto-BlackItalic';
+                font-size: 2vw;
+                margin-top: 5%;
+            }
+            &#contact-container {
+                position: absolute;
+                left: 0;
+                bottom: 20vh;
+                span {
+                    display: inline-block;
+                    font-size: 1.4vw;
+                    margin-bottom: 4%;
+                    border-bottom: 2px solid color(yellow);
+                    color: color(grey4);
+                }
+                li {
+                    text-transform: none;
+                    padding-left: 0;
+                    font-size: 0.7vw;
+                    &#phone,
+                    &#mail {
+                        opacity: 0;
+                        transform: translateY(30%);
+                    }
+                    &:first-child {
+                        margin-bottom: 5%;
+                    }
+                }
+            }
+            &.link {
+                opacity: 0;
+                transform: translateX(-60%);
+                &:not(:last-child) {
+                a {
+                    display: inline-block;
+                    position: relative;
+                    overflow: hidden;
+                    transition: color .5s;
+                    &::after {
+                        z-index: -1;
+                        content: '';
+                        position: absolute;
+                        height: 18%;
+                        width: 100%;
+                        bottom: 35%;
+                        left: 0;                    
+                        background-color: color(yellow);
+                        transform: translateX(-101%);
+                        transition: transform .6s cubic-bezier(.73,.59,0,.81);
+                    }
+                    &:hover {
+                        &::after {
+                            transform: translateX(0);
+                        }
+                    }
+                }
+
+                &.active {
+                    a {
+                        color: color(yellow);
+                        &::after {
+                            background: #1fa2ff; /* fallback for old browsers */
+                            background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+                            background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;                       
+                        }    
+                    }
+                }
+            }
+            }
+        }
+
+        a {
+            color: color(grey4);
+        }
+
+
+    }
+
+    #black-calc {
+        width: calc(100vw - 100%);
+        background: color(black);
+        opacity: 0;
+    }  
 }

@@ -1,12 +1,10 @@
-  #canvas-container {
-        position: relative;
-        width: 75vw;
-        height: 75vw;
+#canvas-container {
+  position: relative;
+  width: 75vw;
+  height: 75vw;
 
-        canvas {
-          position: absolute;
-          top: -8vw;
-          left: 1;
-          z-index: 5;
-        }
-    }
+  canvas {
+    position: absolute;
+    z-index: 6;
+  }
+}

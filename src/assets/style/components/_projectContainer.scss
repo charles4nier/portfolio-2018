@@ -1,4 +1,43 @@
 #project-container {
     height: 100%;
     cursor: pointer;
+
+    
+  h2 {
+        position: absolute;
+        top: 1%;
+        left: 6%;
+        z-index: 6;
+        font-size: 7vw;
+        text-transform: uppercase;
+        overflow: hidden;
+        color: color(white);
+        transform-origin: center top;
+      span {
+        display: block;
+        position: relative;
+        &:after {
+          content:'';
+          position: absolute;
+          width: 10vw;
+          height: 4%;
+          bottom: 4%;
+          left: 1%;
+          background-color: color(yellow);
+        }
+      }
+    }
+
+    // .number-indicator {
+    //   position: absolute;
+    //   font-size: 25vw;
+    //   font-weight: bold;
+    //   top: 50%;
+    //   left: 44%;
+    //   z-index: 6;
+    //   // -webkit-text-stroke: 5px color(white);
+    //   // text-stroke: 4px color(white);
+    //   color: color(white);
+    //   font-family: 'Roboto-Black';
+    // }
 }

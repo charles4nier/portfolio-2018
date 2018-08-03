@@ -13,9 +13,6 @@ import ikDetail3 from '../assets/images/ikDetail-3.png'
 import LearnEat from '../assets/images/learnEat.png'
 import Disp from '../assets/images/dispFactor.png'
 // import Disp from '../assets/images/dispFactor.jpg'
-// import Disp from '../assets/images/einstein.jpg'
-// import MusicsPicture from '../assets/img/musics.jpg';
-// import ReviewsPicture from '../assets/img/reviews.jpg';
 
 /* eslint-disable */
 const dataProject = [
@@ -31,46 +28,46 @@ const dataProject = [
     imgDetail3: SuperjoliDetail3,
     techno: [
         {
-            name:'- Html5'
+            name:'Html5'
         }, 
         {
-            name:'- Css3'
+            name:'Css3'
         }, 
         {
-            name:'- Js'
+            name:'Js'
         }, 
         {
-            name:'- Vue.js'
+            name:'Vue.js'
         }
     ],
     span2: 'Missions :',
     missions: [
         {
-            mission: '- Développer un site dynamique et moderne'
+            mission: 'Développer un site dynamique et moderne'
         },
         {
-            mission: '- Offrir une expérience utilisateur améliorée en développant une SPA'
+            mission: 'Offrir une expérience utilisateur améliorée en développant une SPA'
         }, 
         {
-            mission: '- Site à la fois responsive et fluide'
+            mission: 'Site à la fois responsive et fluide'
         }
     ],
     span3: 'Enjeux :',
     enjeux: [
         {
-            enjeu: '- Concevoir entièrement un site de grande taille'
+            enjeu: 'Concevoir entièrement un site de grande taille'
         },
         {
-            enjeu: '- Réaliser des templates de pages réutilisables'
+            enjeu: 'Réaliser des templates de pages réutilisables'
         },
         {
-            enjeu: '- Mettre en place une base de données internes'
+            enjeu: 'Mettre en place une base de données internes'
         },
         {
-            enjeu: '- Apprendre le fonctionnement des transitions de pages animées'
+            enjeu: 'Apprendre le fonctionnement des transitions de pages animées'
         },
         {
-            enjeu: '- Développer des modules de scroll animé'
+            enjeu: 'Développer des modules de scroll animé'
         }],
     key: 1,
     disp: Disp,
@@ -88,34 +85,34 @@ const dataProject = [
     imgDetail3: bambooDetail3,
     techno: [
         {
-            name: '- Html5'
+            name: 'Html5'
         },
         {
-            name: '- Sass'
+            name: 'Sass'
         }, 
         {
-            name: '- Js'
+            name: 'Js'
         }
     ],
     span2: 'Missions :',
     missions: [
         {
-            mission: '- Développer un site dynamique et moderne, à la fois responsive et fluide'
+            mission: 'Développer un site dynamique et moderne, à la fois responsive et fluide'
         },
         {
-            mission: '- Site à la fois responsive et fluide'
+            mission: 'Site à la fois responsive et fluide'
         },
         {
-            mission: '- Réaliser un site sobre et esthétique, à l\'image du produit'
+            mission: 'Réaliser un site sobre et esthétique, à l\'image du produit'
         } 
     ],
     span3: 'Enjeux :',
     enjeux: [
         {
-            enjeu: '- Réaliser des animations au scroll'
+            enjeu: 'Réaliser des animations au scroll'
         },
         {
-            enjeu: '- Développer dans un environnement js natif'
+            enjeu: 'Développer dans un environnement js natif'
         }
     ],
     key: 2,
@@ -133,76 +130,49 @@ const dataProject = [
     imgDetail3: ikDetail3,
     techno: [
         {
-            name:'- Html5'
-        },
-        {
-            name: '- Css3'
-        }, 
-        {
-            name: '- Js'
-        },
-        {
-            name: '- Vue.js'
-        }
-    ],
-    span2: 'Missions :',
-    missions: [
-        {
-            mission: '- Développer un site dynamique et moderne'
-        },
-        {
-            mission: '- Améliorer l\'expérience utilsiateur grâce à une SPA'
-        },
-        {
-            mission: '- Réaliser un site moderne, design tout en restant sobre'
-        }
-    ],
-    span3: 'Enjeux :',
-    enjeux: [
-        {
-            enjeu: '- Proposer un design innovant'
-        },
-        {
-            enjeu: '- Concevoir l\'architecture du site pour réaliser de belles animations'
-        },
-        {
-            enjeu: '- Améliorer mes connaissances dans la gestion du router et des transitions de pages'
-        },
-        {
-            enjeu: '- Progresser dans l\'utilsiation de bibliothque d\'animation'
-        }
-    ],
-    key: 3,
-    disp: Disp,
-    link: 'http://ikmusic.org/'
-  },
-  { 
-    name: 'learn-eat',
-    title: 'svg.path',
-    src: LearnEat,
-    span: 'Learn eat',
-    presentation: ' est un site réalisé pour Marie Gaillard qui propose d\'apprendre l\'anglais ou le français en cuisinant. Inspiré par la cuisine et l\'enseignement, il reprend les codes couleurs de la gastronomie tout en restant ludique.',
-    imgDetail1: 'src',
-    imgDetail2: 'src',
-    imgDetail3: '',
-    techno: [
-        {
             name:'Html5'
         },
         {
             name: 'Css3'
         }, 
         {
-            name: 'jQuery'
+            name: 'Js'
+        },
+        {
+            name: 'Vue.js'
         }
     ],
     span2: 'Missions :',
-    description: 'text',
-    description2: 'text',
-    key: 4,
+    missions: [
+        {
+            mission: 'Développer un site dynamique et moderne'
+        },
+        {
+            mission: 'Améliorer l\'expérience utilsiateur grâce à une SPA'
+        },
+        {
+            mission: 'Réaliser un site moderne, design tout en restant sobre'
+        }
+    ],
+    span3: 'Enjeux :',
+    enjeux: [
+        {
+            enjeu: 'Proposer un design innovant'
+        },
+        {
+            enjeu: 'Concevoir l\'architecture du site pour réaliser de belles animations'
+        },
+        {
+            enjeu: 'Améliorer mes connaissances dans la gestion du router et des transitions de pages'
+        },
+        {
+            enjeu: 'Progresser dans l\'utilsiation de bibliothque d\'animation'
+        }
+    ],
+    key: 3,
     disp: Disp,
-    link: 'http://www.learn-eat.fr/'
-  },
+    link: 'http://ikmusic.org/'
+  }
 ]
   
 export default dataProject
