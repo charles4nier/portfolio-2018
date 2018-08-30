@@ -9,7 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/a-propos',
+      path: '/accueil',
       name: 'About',
       component: About
     },

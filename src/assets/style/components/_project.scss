@@ -1,8 +1,7 @@
 #project-template {
-    display: flex;
     width: 100%;
     height: 100vh;
-    justify-content: flex-end;
+    cursor: auto;
     .blue-calc {
       height: 100%;
       left: 0;
@@ -11,7 +10,7 @@
       width: 100%;
     }
     aside {
-      @include flexAlign(column, center, center);
+      @include flexAlign(column, flex-start, center);
       width: 25vw;
       height: 100%;
 
@@ -19,34 +18,66 @@
         @include flexAlign(column, flex-start, center);
         position: relative;
         width: 100%;
-        height: 50%;
-        padding: 14% 12%;
+        height: 72%;
+        padding: 35% 12% 0 12%;
         background-color: color(white);
         overflow: hidden;
         p { 
-            font-size: 20px;
-            line-height: 1.4;
+            font-size: 1.4vw;
+            line-height: 1.6;
             color: color(grey3);
             transform-origin: center top;
+            height: 50%;
             span {
                 color: color(yellow);
                 font-family: 'OpenSans-Bold';
                 text-transform: uppercase;
             }
         }
+
+        button {
+          align-self: center;
+          position: relative;
+          margin-top: 25%;
+          font-family: 'OpenSans-Regular';
+          font-size: 14px;
+          background: none;
+          border: none;
+          padding-left: 12%;
+          cursor: pointer;
+          margin-left: -5%;
+          &:before {
+            position: absolute;
+            content: '';
+            height: 1px;
+            top: 52%;
+            left: 0;
+            width: 15%;
+            background-color: color(yellow);
+            transform: rotate(90deg);
+          } 
+          &:after {
+            position: absolute;
+            content: '';
+            height: 1px;
+            top: 52%;
+            left: 0;
+            width: 15%;
+            background-color: color(yellow);
+          } 
+        }
+
         a {
+          position: relative;
+          align-self: center;
           display: inline-block;
-          position: absolute;
-          margin-top: 20%;
+          margin-top: 25%;
           transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
           font-size: 14px;
           border: 1px solid color(yellow);
           padding: 5% 10%;
           overflow: hidden;
           text-transform: uppercase;
-          font-weight: bold;
-          bottom: 12%;
-          left: 12%;
           font-family: 'Roboto-Bold'; 
           &::before {
             content: '';
@@ -99,180 +130,259 @@
         }
       }
 
-      .bottom-container {
-        position: relative;
-        @include flexAlign(row, center, center);
-        width: 25vw;
-        height: 25%;
-        background-color: color(white3);
-        overflow: hidden;
-        #plus-icon {
-          position: absolute;
-          width: 10%;
-          height: 2px;
-          z-index: 3;
-          top: calc(50% - 1px);
-          left: 45%;
-          &::before, &::after {
-              content: '';
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              background-color: color(yellow);
-              transform: translate3d(0, 0, 0);
-              transition: all .1s;
-              opacity: 1;
-          }
-          &::before {
-            top: 0;
-            transform: translate3d(0, 0, 0) rotate(90deg);
-          }
-        }
+      // .bottom-container {
+      //   position: relative;
+      //   @include flexAlign(row, center, center);
+      //   width: 25vw;
+      //   height: 20%;
+      //   background-color: color(white3);
+      //   overflow: hidden;
+      //   transition: background-color .4s ease-in-out;
+      //   #plus-icon {
+      //     position: absolute;
+      //     width: 10%;
+      //     height: 2px;
+      //     z-index: 3;
+      //     top: calc(50% - 1px);
+      //     left: 45%;
+      //     &::before, &::after {
+      //         content: '';
+      //         position: absolute;
+      //         width: 100%;
+      //         height: 100%;
+      //         background-color: color(yellow);
+      //         transform: translate3d(0, 0, 0);
+      //         transition: all .1s;
+      //         opacity: 1;
+      //     }
+      //     &::before {
+      //       top: 0;
+      //       transform: translate3d(0, 0, 0) rotate(90deg);
+      //     }
+      //   }
 
-        button {
-        position: relative;
-        @include flexAlign(row, center, center);
-        width: 80%;
-        border: none;
-        background: none;
-        color: color(yellow);
-        font-size: 15px;
-        cursor: pointer;
-          &::before {
-              content: '';
-              position: absolute;              
-              width: 110px;
-              height: 110px;
-              border: 1px solid rgba(255,255,255,0.35);
-              opacity: 1;
-              border-radius: 50%;
-              top: calc(50% - 55px);
-              left: calc(50% - 55px);
-              transition: all 0.3s;
-              background: #1fa2ff; /* fallback for old browsers */
-              background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
-              background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ background-color: color(grey3bis);
-          }
-          span {
-            @include flexAlign(row, center, center);
-            width: 100%;
-            height: 40px;
-            overflow: hidden;
-            font-family: 'Roboto-Bold'; 
-            &::before {
-              content: attr(data-content);
-              position: relative;
-              opacity: 1;
-              transform: translateY(80px);
-              transition: all .3s;
-            }
-          }
-        }
-        &:hover {
-          background-color: color(white);
-          button {
-            &::before {
-              width: 60px;
-              height: 60px;
-              opacity: 1;              
-              top: calc(50% - 30px);
-              left: calc(50% - 30px);
-            }
+      //   button {
+      //   position: relative;
+      //   @include flexAlign(row, center, center);
+      //   width: 80%;
+      //   border: none;
+      //   background: none;
+      //   color: color(yellow);
+      //   font-size: 15px;
+      //   cursor: pointer;
+      //     &::before {
+      //         content: '';
+      //         position: absolute;              
+      //         width: 110px;
+      //         height: 110px;
+      //         border: 1px solid rgba(255,255,255,0.35);
+      //         opacity: 1;
+      //         border-radius: 50%;
+      //         top: calc(50% - 55px);
+      //         left: calc(50% - 55px);
+      //         transition: all 0.3s;
+      //         background: #1fa2ff; /* fallback for old browsers */
+      //         background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+      //         background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ background-color: color(grey3bis);
+      //     }
+      //     span {
+      //       @include flexAlign(row, center, center);
+      //       width: 100%;
+      //       height: 40px;
+      //       overflow: hidden;
+      //       font-family: 'Roboto-Bold'; 
+      //       &::before {
+      //         content: attr(data-content);
+      //         position: relative;
+      //         opacity: 1;
+      //         transform: translateY(80px);
+      //         transition: all .3s;
+      //       }
+      //     }
+      //   }
+      //   &:hover {
+      //     background-color: color(white);
+      //     button {
+      //       &::before {
+      //         width: 60px;
+      //         height: 60px;
+      //         opacity: 1;              
+      //         top: calc(50% - 30px);
+      //         left: calc(50% - 30px);
+      //       }
 
-            span {
-              &::before {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-          }
+      //       span {
+      //         &::before {
+      //           opacity: 1;
+      //           transform: translateY(0);
+      //         }
+      //       }
+      //     }
 
-          #plus-icon {
-            &::before, &::after {
-              opacity: 0;
-            }
-          }
-        }
-      }
+      //     #plus-icon {
+      //       &::before, &::after {
+      //         opacity: 0;
+      //       }
+      //     }
+      //   }
+      // }
     }
 
     #project-nav-container {
       position: relative;
-      display: flex;
+      @include flexAlign(column, center, center);
       width: 25vw;
-      height: 25%;
+      height: 20%;
       overflow: hidden;
-      button {
+      padding: 0 0 10% 0;
+      cursor: auto;
+      // background-color: color(white3);
+      p {
+        align-self: center;
         position: relative;
-        cursor: pointer;
-        transition: background-color .4s;
-        @include flexAlign(row, center, center);
-        position: relative;
-        width: 50%;
-        background-color: color(white3);
+        font-family: 'OpenSans-Regular';
+        font-size: 14px;
+        background: none;
         border: none;
-        color: color(grey3bis);
-        font-style: italic;
-        overflow: hidden;
-        &:before, &:after {
-          content: '';
-          position: absolute;
-          width: 20%;
-          height: 2px;
-          top: calc(50% - 1px);
-          left: 40%;
-          background: color(yellow);
-          transform-origin: left center;
-          transition: all .3s;
-        }
-        &:before {
-          transform: rotate(-40deg) scale(1);
-        }
-        &:after {
-          transform: rotate(40deg) scale(1);
-        }
-        &:last-child {
+        margin-bottom: 12%;
+        padding-bottom: 4px;
+        border-bottom: 1px dashed color(yellow);
+        // &:before {
+        //   position: absolute;
+        //   content: '';
+        //   height: 1px;
+        //   top: 52%;
+        //   left: 0;
+        //   width: 5%;
+        //   background-color: color(yellow);
+        // } 
+      }
+
+      div {
+        @include flexAlign(row, space-evenly, center);
+        width: 100%;
+        button {
+          position: relative;
+          border: 1px solid color(yellow);
+          width: 80px;
+          height: 48px;
+          cursor: pointer;
+          border-radius: 0;
+          &:first-child {
+            background: #1fa2ff; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          }
+
+          &:last-child {
+           background: #1fa2ff; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+          }
+
           &:before, &:after {
-            transform-origin: right center;
-          }
-        }
-
-        span {
-          position: absolute;
-          @include flexAlign(row, center, center);
-          width: 100%;
-          height: 40px;
-          left: 0;
-          bottom: 16px;
-          font-size: 12px;
-          overflow: hidden;
-          font-family: 'Roboto-Bold';
-          &::before {
-            content: attr(data-content);
-            position: relative;
-            opacity: 1;
-            transform: translateY(80px);
+            content: '';
+            position: absolute;
+            width: 20%;
+            height: 2px;
+            top: calc(50% - 1px);
+            left: 40%;
+            background: color(yellow);
+            transform-origin: left center;
             transition: all .3s;
-          }
-        }
-
-
-        &:hover {
-          background-color: color(white);
-          &:before {
-            transform: rotate(-40deg) scale(0.6);
-          }
-          &:after {
-            transform: rotate(40deg) scale(0.6);
-          }
-
-          span {
-            &::before {
-              opacity: 1;
-              transform: translateY(0);
             }
-          }
+            &:before {
+              transform: rotate(-40deg) scale(.8);
+            }
+            &:after {
+              transform: rotate(40deg) scale(.8);
+            }
+            &:last-child {
+              &:before, &:after {
+                transform-origin: right center;
+              }
+            }
+          &:hover {
+            &:before {
+              transform: rotate(-40deg) scale(1.2);
+            }
+            &:after {
+              transform: rotate(40deg) scale(1.2);
+            }
+          }  
         }
       }
-    }
+    //   button {
+    //     position: relative;
+    //     cursor: pointer;
+    //     transition: background-color .4s ease-in-out;
+    //     @include flexAlign(row, center, center);
+    //     position: relative;
+    //     width: 50%;
+    //     background-color: color(white3);
+    //     border: none;
+    //     color: color(grey3bis);
+    //     font-style: italic;
+    //     overflow: hidden;
+    //     &:before, &:after {
+    //       content: '';
+    //       position: absolute;
+    //       width: 20%;
+    //       height: 2px;
+    //       top: calc(50% - 1px);
+    //       left: 40%;
+    //       background: color(yellow);
+    //       transform-origin: left center;
+    //       transition: all .3s;
+    //     }
+    //     &:before {
+    //       transform: rotate(-40deg) scale(.8);
+    //     }
+    //     &:after {
+    //       transform: rotate(40deg) scale(.8);
+    //     }
+    //     &:last-child {
+    //       &:before, &:after {
+    //         transform-origin: right center;
+    //       }
+    //     }
+
+    //     span {
+    //       position: absolute;
+    //       @include flexAlign(row, center, center);
+    //       width: 100%;
+    //       height: 40px;
+    //       left: 0;
+    //       bottom: 16px;
+    //       font-size: 12px;
+    //       overflow: hidden;
+    //       font-family: 'Roboto-Bold';
+    //       &::before {
+    //         content: attr(data-content);
+    //         position: relative;
+    //         opacity: 1;
+    //         transform: translateY(80px);
+    //         transition: all .3s;
+    //       }
+    //     }
+
+
+    //     &:hover {
+    //       background-color: color(white);
+    //       &:before {
+    //         transform: rotate(-40deg) scale(0.8);
+    //       }
+    //       &:after {
+    //         transform: rotate(40deg) scale(0.8);
+    //       }
+
+    //       span {
+    //         &::before {
+    //           opacity: 1;
+    //           transform: translateY(0);
+    //         }
+    //       }
+    //     }
+    //   }
+    }  
 }

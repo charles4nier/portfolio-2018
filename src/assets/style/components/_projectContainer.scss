@@ -40,4 +40,44 @@
     //   color: color(white);
     //   font-family: 'Roboto-Black';
     // }
+
+    #carrousel-container {
+      @include flexAlign(row, center, center);
+      position: absolute;
+      width: 25vw;
+      height: 27vh;
+      top: 73vh;
+      right: 0;
+      z-index: 6;
+      p {
+        font-size: 25px;
+        font-family: 'OpenSans-Bold';
+        position: relative;
+        z-index: 1;
+        // -webkit-text-stroke: 1px color(white);
+        // text-stroke: 1px color(white);
+        color: color(white);
+        text-transform: uppercase;
+        border-bottom: 2px solid color(yellow);
+        padding-bottom: 5px;
+      }
+      img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.9;
+        background: #1fa2ff; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+      }
+    }
 }

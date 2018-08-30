@@ -30,9 +30,10 @@
     <div id="canvas-container" ref="canvasContainer">
     </div>
     <router-view :dataProject="dataProject" :showProjectDetail="showProjectDetail"/>
-    <div class="blue-calc number-1"></div>
+    <Carousel />
+<!--     <div class="blue-calc number-1"></div>
     <div class="blue-calc number-2"></div>
-    <div class="blue-calc number-3"></div>
+    <div class="blue-calc number-3"></div> -->
   </div>
 </template>
 
@@ -40,6 +41,8 @@
 import dataProject from './constants/dataProject'
 import HoverEffect from './assets/jsModules/Hover'
 import { TweenMax, TimelineMax } from 'gsap/TweenMax'
+
+import Carousel from './components/Carousel'
 
 export default {
   name: 'App',
@@ -56,6 +59,9 @@ export default {
       projectActive: null,
       aboutActive: null
     }
+  },
+  components: {
+    'Carousel': Carousel
   },
   methods: {
     initDirection: function (newDirection) {
@@ -133,7 +139,7 @@ export default {
       tl.to('#link-container', .8, {xPercent: 100, ease: Quart.easeInOut})
         .to('#black-calc', 0.3, {opacity: 0.6}, '-=.5')
         .staggerTo('.link', 0.6, {opacity: 1, xPercent: 60, ease: Quad.easeOut}, '.13', '-=.7')
-        .to('#phone', 0.6, {opacity: 1, yPercent: -30}, '-=0.2')
+        .to('#phone', 0.6, {opacity: 1, yPercent: -30})
         .to('#mail', 0.6, {opacity: 1, yPercent: -30}, '-=0.6')
 
       tl.pause()
@@ -180,10 +186,10 @@ export default {
         this.$refs.mainNav.style.zIndex = 7;
         this.animMenu.play()
       } else {
-        this.animMenu.reverse()
+        this.animMenu.reverse(1.4)
         setTimeout(() => {
           this.$refs.mainNav.style.zIndex = -1
-        }, 1500)
+        }, 1400)
       }
     }
   }

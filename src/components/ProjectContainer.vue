@@ -3,11 +3,14 @@
     <h2 id="project-title" ref="titleProject"><span>{{title}}</span></h2>
     <transition
       mode="out-in"
-      :duration="{enter:0, leave: 500}">
+      :duration="{enter:0, leave: 700}">
       <router-view :projectDetails='projectDetails' :changePage='changePage' :key='$route.params.project' :showProjectDetail="showProjectDetail"></router-view>
     </transition>
     <ProjectDetail :projectDetails='projectDetails' :showProjectDetail="showProjectDetail"/>
-    <span class="number-indicator">0{{projectDetails[0].key}}</span>
+    <!-- <div id="carrousel-container">
+      <p>Autres projets</p>
+      <img :src="projectDetails[0].src" />
+    </div> -->
   </main>
 </template>
 

@@ -107,9 +107,9 @@
                         z-index: -1;
                         content: '';
                         position: absolute;
-                        height: 18%;
+                        height: 20%;
                         width: 100%;
-                        bottom: 35%;
+                        bottom: 10%;
                         left: 0;                    
                         background-color: color(yellow);
                         transform: translateX(-101%);
@@ -126,9 +126,7 @@
                     a {
                         color: color(yellow);
                         &::after {
-                            background: #1fa2ff; /* fallback for old browsers */
-                            background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
-                            background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;                       
+                            background: color(grey4);                     
                         }    
                     }
                 }
