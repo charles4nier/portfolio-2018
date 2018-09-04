@@ -7,10 +7,6 @@
       <router-view :projectDetails='projectDetails' :changePage='changePage' :key='$route.params.project' :showProjectDetail="showProjectDetail"></router-view>
     </transition>
     <ProjectDetail :projectDetails='projectDetails' :showProjectDetail="showProjectDetail"/>
-    <!-- <div id="carrousel-container">
-      <p>Autres projets</p>
-      <img :src="projectDetails[0].src" />
-    </div> -->
   </main>
 </template>
 

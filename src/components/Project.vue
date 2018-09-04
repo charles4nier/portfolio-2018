@@ -6,20 +6,6 @@
         <button @click="show">En savoir plus</button>
         <a :href="projectDetails[0].link" target='_blank'><span data-hover="Visiter le site">Visiter le site</span></a>
       </div>
-       <!-- <div id="see-more-container" class="bottom-container" @click="show">
-        <div id="plus-icon"></div>
-        <button><span data-content="En savoir plus"></span></button>
-      </div> -->
-    <!--   <div id="project-nav-container" :style="{ backgroundColor: projectDetails[0].backgroundColor}">
-          <div class="blue-calc"></div> 
-          <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous">
-            <span data-content="Projet précédent"></span>
-            
-          </button>
-          <button :data-key="projectDetails[0].key" @click="changePage" data-action="next">
-            <span data-content="Projet suivant"></span>
-          </button>
-      </div> -->
       <div id="project-nav-container">
         <p>Autres projets :</p>
         <div id="button-container">

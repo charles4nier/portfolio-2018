@@ -7,6 +7,15 @@
     right: 0;
     z-index: 6;
     overflow: hidden;
+
+    #focus-project {
+        z-index: 1;
+    }
+
+    .image-container {
+        z-index: 2;
+    }
+    #focus-project,
     .image-container {
         @include flexAlign(row, center, center);
         position: absolute;
@@ -14,13 +23,13 @@
         height: 100%;
         top: 0;
         overflow: hidden;
-        &.first {
+        &.position-0 {
             left: -100%;
         }
-        &.second {
+        &.position-1 {
             left: 0;
         }
-        &.third {
+        &.position-2 {
             left: 100%;
         }
         a {
@@ -108,7 +117,7 @@
         top: 0;
         z-index: 4;
         opacity: 0;
-        transition: opacity .4s;
+        transition: transform .6s cubic-bezier(0,.6,.13,.82), opacity .4s;
         cursor: pointer;
         img {
             width: 50%;
@@ -118,17 +127,17 @@
             object-position: 45% center; 
         }
         &#left-arrow {
-            left: 0;        
+            left: 0;
+            transform: translateX(-20%);        
         }
         &#right-arrow {
             right: 0;
+            transform: translateX(20%);  
         }
     }
 
-    &:hover {
-        .project-image {
-            transform: scale(1.3);
-        }
+    &:hover {     
+        #focus-project,
         .image-container {
             &::after {
                 opacity: 0.7;
@@ -137,7 +146,7 @@
             #label {
                 transform: translateY(-10%);
                 opacity: 0;
-                transition: all .6s cubic-bezier(0,.6,.13,.82);
+                transition: all .4s cubic-bezier(0,.6,.13,.82);
             }
 
             #project-title {
@@ -145,12 +154,22 @@
                 transform: translateY(0);
                 transition: all .4s cubic-bezier(0,.6,.13,.82) .2s;    
             }
+
+            .project-image {
+                transform: scale(1.3);
+            }
             
         }
         
 
         button {
             opacity: 1;
+            &#left-arrow {
+                transform: translateX(0);
+            }
+            &#right-arrow {
+                transform: translateX(0);
+            }
             &:hover {
                 &#left-arrow {
                     img {

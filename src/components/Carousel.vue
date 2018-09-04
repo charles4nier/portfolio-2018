@@ -1,6 +1,13 @@
 <template>
   <div id="carousel">
-    <div v-for="data in dataCarousel" class="image-container" :class="data.position"  :key="data.name">
+    <div id="focus-project" class="second" ref="focusedProject">
+      <router-link :to="focusedProject.url"><img :src="focusedProject.src" class="project-image" :alt="focusedProject.description"/></router-link>
+      <p>
+          <span id="label">autres projets</span>
+          <span id="project-title">{{focusedProject.name}}</span>
+      </p>
+    </div> 
+    <div v-for="(data, index) in dataCarousel" class="image-container" :class="data.position + '-' + index"  :key="data.name">
       <router-link :to="data.url"><img :src="data.src" class="project-image" :alt="data.description"/></router-link>
       <p>
           <span id="label">autres projets</span>
@@ -21,39 +28,83 @@
     data () {
         return {
           dataCarousel: dataCarousel,
-          slideTicker: true
+          slideTicker: true,
+          percentVal: 0,
+          slideIndex: 1,
+          focusedProject: null,
+          index: 1
         }
     },
     methods: {
       callSlide: function (event) {
-        // if(this.slideTicker === false) {
-        //   return
-        // }
+        if(this.slideTicker === false) {
+          return
+        }
 
-        // this.slideTicker = false
+        this.slideTicker = false
+        
+        let slideValue = null
 
-        let slideDirection = event.target.dataset.action === 'before' ? this.slideRight : this.slideLeft
-     
+        let dataCarouselLength = this.dataCarousel.length - 1
 
-        slideDirection()
+        if(event.target.dataset.action === 'before') {
+          slideValue = 100
+          this.index = this.index > 0 ? --this.index : dataCarouselLength
+        } else {
+          slideValue = -100
+          this.index = this.index < dataCarouselLength ? ++this.index : 0
+        } 
+      
+        this.$refs.focusedProject.style.zIndex = 1
+
+        this.slide(0.6, slideValue)
       },
 
-      slideLeft: function () {
+      slide: function (time, value) {
         let imageContainer = document.querySelectorAll('.image-container')
-        
-        TweenMax.to(imageContainer, 0.5, {xPercent: -100, onComplete: this.reversedSlideTicker})
+
+        TweenMax.to(imageContainer, time, {xPercent: value, ease: Sine.easeInOut, onComplete: () => {
+          this.reversedSlideTicker()
+          TweenMax.set(imageContainer,{xPercent: 0})
+        }})
       },
 
-      slideRight: function () {
-        let imageContainer = document.querySelectorAll('.image-container')
+      pushNewValues: function(val1, val2, val3) {
+        let dataArray = []
+
+        dataArray.push(dataCarousel[val1])
+        dataArray.push(dataCarousel[val2])
+        dataArray.push(dataCarousel[val3])
         
-        TweenMax.to(imageContainer, 0.5, {xPercent: 100, onComplete: this.reversedSlideTicker})
-      }
-    },
-    computed: {
+        this.dataCarousel = dataArray
+      },
+
       reversedSlideTicker: function () {
-        this.reversedSlideTicker = true
-      }    
+        this.$refs.focusedProject.style.zIndex = 3
+        this.slideTicker = true
+
+        if(this.index === 0)  {
+          this.pushNewValues(this.dataCarousel.length - 1, this.index, this.index + 1)
+          return
+        } 
+
+        if (this.index === dataCarousel.length - 1) {
+          this.pushNewValues(this.index - 1, this.index, 0)
+          return
+        }
+
+        this.pushNewValues(this.index - 1, this.index, this.index + 1)
+        
+      }      
+    },
+    created () {
+      this.focusedProject = dataCarousel[this.index]
+    },
+
+    watch: {
+      '$data.index': function (newVal, oldVal) {
+        this.focusedProject = dataCarousel[newVal]
+      }
     }
   }
 </script>
