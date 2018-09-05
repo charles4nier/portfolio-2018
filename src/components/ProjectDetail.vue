@@ -1,5 +1,5 @@
 <template>
-  <div id="project-detail-container">
+  <div id="project-detail-container" ref="projectDetailContainer">
     <h2 id="project-detail-title"><span>{{projectDetails[0].name}}</span></h2>
     <div id="background-container">
       <div class="background-part"></div>
@@ -42,6 +42,7 @@
 
 <script>
 import ScrollReveal from '../assets/jsModules/ScrollReveal'
+import ScrollBehavior from '../assets/jsModules/ScrollBehavior'
 
 export default {
   name: 'ProjectDetail',
@@ -92,6 +93,9 @@ export default {
     hide: function () {
       this.$store.state.showDetails = false
     }
+  },
+  mounted () {
+    ScrollBehavior(document.querySelector('#project-detail-container'), 160, 12)
   },
   watch: {
     '$store.state.showDetails': function (newVal, oldVal) {

@@ -25,6 +25,7 @@
 
   export default {
     name: 'Carousel',
+    props: ['dataProject'],
     data () {
         return {
           dataCarousel: dataCarousel,
@@ -45,7 +46,7 @@
         
         let slideValue = null
 
-        let dataCarouselLength = this.dataCarousel.length - 1
+        let dataCarouselLength = this.$props.dataProject.length - 1
 
         if(event.target.dataset.action === 'before') {
           slideValue = 100
@@ -63,7 +64,7 @@
       slide: function (time, value) {
         let imageContainer = document.querySelectorAll('.image-container')
 
-        TweenMax.to(imageContainer, time, {xPercent: value, ease: Sine.easeInOut, onComplete: () => {
+        TweenMax.to(imageContainer, time, {xPercent: value, ease: Quart.easeInOut, onComplete: () => {
           this.reversedSlideTicker()
           TweenMax.set(imageContainer,{xPercent: 0})
         }})
@@ -75,7 +76,7 @@
         dataArray.push(dataCarousel[val1])
         dataArray.push(dataCarousel[val2])
         dataArray.push(dataCarousel[val3])
-        
+
         this.dataCarousel = dataArray
       },
 
@@ -94,11 +95,14 @@
         }
 
         this.pushNewValues(this.index - 1, this.index, this.index + 1)
+
+        // this.pushNewValues(this.index - 1, this.index, this.index % dataCarousel.length)
         
       }      
     },
     created () {
       this.focusedProject = dataCarousel[this.index]
+      console.log(this.$props.dataProject)
     },
 
     watch: {

@@ -13,6 +13,7 @@
   "dependencies": {
     "aos": "^3.0.0-beta.4",
     "gsap": "^2.0.1",
+    "lodash.debounce": "^4.0.8",
     "scrollreveal": "^4.0.0",
     "three": "^0.94.0",
     "vue": "^2.5.2",

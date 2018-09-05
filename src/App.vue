@@ -30,7 +30,7 @@
     <div id="canvas-container" ref="canvasContainer">
     </div>
     <router-view :dataProject="dataProject" :showProjectDetail="showProjectDetail"/>
-    <Carousel />
+    <Carousel :dataProject="dataProject"/>
 <!--     <div class="blue-calc number-1"></div>
     <div class="blue-calc number-2"></div>
     <div class="blue-calc number-3"></div> -->
@@ -48,7 +48,7 @@ export default {
   name: 'App',
   data () {
     return {
-      dataProject: dataProject,
+      dataProject,
       projectDetails: [],
       hoverEffect: null,
       lastSrc: '',
@@ -145,16 +145,6 @@ export default {
       tl.pause()
       return tl
     }
-    // animCalc: function () {
-    //   let tl = new TimelineMax()
-    //   tl.to('.blue-calc.number-1', 0.5, {xPercent: 100, ease: Quad.easeInOut}, '+=.1')
-    //   tl.to('.blue-calc.number-1', 0.4, {xPercent: 200, ease: Quad.easeInOut})
-    //   tl.eventCallback('onComplete', () => {
-    //     document.querySelector('.blue-calc.number-1').style.zIndex = -1
-    //     tl.reverse()
-    //     setTimeout(() => { document.querySelector('.blue-calc.number-1').style.zIndex = 0}, 1200)
-    //   })
-    // }
   },
   mounted () {
     this.initCanvas(null, null)
