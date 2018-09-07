@@ -34,7 +34,7 @@
         <ul>
           <li v-for="(item, index) in projectDetails[0].enjeux" :key="index">- {{item.enjeu}}</li>
         </ul>
-        <a :href="projectDetails[0].link" target='_blank'><span data-hover="Visiter le site">Visiter le site</span></a>
+        <a :href="projectDetails[0].link" target='_blank' data-hover="Visiter le site"><span>Visiter le site</span></a>
       </div>
     </div>
   </div>

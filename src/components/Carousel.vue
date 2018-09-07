@@ -1,14 +1,14 @@
 <template>
   <div id="carousel">
     <div id="focus-project" class="second" ref="focusedProject">
-      <router-link :to="focusedProject.url"><img :src="focusedProject.src" class="project-image" :alt="focusedProject.description"/></router-link>
+      <router-link :to="focusedProject.name" @click.native="callSlide"><img :src="focusedProject.src" class="project-image" :alt="focusedProject.description"/></router-link>
       <p>
           <span id="label">autres projets</span>
           <span id="project-title">{{focusedProject.name}}</span>
       </p>
     </div> 
-    <div v-for="(data, index) in dataCarousel" class="image-container" :class="data.position + '-' + index"  :key="data.name">
-      <router-link :to="data.url"><img :src="data.src" class="project-image" :alt="data.description"/></router-link>
+    <div v-for="(data, index) in dataCarousel" class="image-container" :class="'position-' + index"  :key="data.name">
+      <router-link :to="data.name"><img :src="data.src" class="project-image" :alt="data.description"/></router-link>
       <p>
           <span id="label">autres projets</span>
           <span id="project-title">{{data.name}}</span>
@@ -25,7 +25,6 @@
 
   export default {
     name: 'Carousel',
-    props: ['dataProject'],
     data () {
         return {
           dataCarousel: dataCarousel,
@@ -46,7 +45,7 @@
         
         let slideValue = null
 
-        let dataCarouselLength = this.$props.dataProject.length - 1
+        let dataCarouselLength = this.dataCarousel.length - 1
 
         if(event.target.dataset.action === 'before') {
           slideValue = 100
@@ -102,7 +101,6 @@
     },
     created () {
       this.focusedProject = dataCarousel[this.index]
-      console.log(this.$props.dataProject)
     },
 
     watch: {

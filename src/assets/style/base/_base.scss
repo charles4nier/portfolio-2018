@@ -173,9 +173,6 @@ h2 {
             height: 100%;
             transform: translateY(100%);
             transition: transform .3s ease-out;
-            background: #1fa2ff; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to left, #4776E6, #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to left, #4776E6, #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
         }
         &:before,
         &:after {
@@ -202,15 +199,36 @@ h2 {
                 transform: translateY(0);
             }
             &:before {
-                background-color: color(white);
+                background-color: color(grey3);
                 transform: rotate(90deg);
             }
 
             
             &:after {
-                background-color: color(white);
+                background-color: color(grey3);
                 transform: rotate(-90deg);
             }
         }
     }
+}
+
+
+#project-page {
+    height: 100%;
+    display: flex;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: color(yellow);
 }

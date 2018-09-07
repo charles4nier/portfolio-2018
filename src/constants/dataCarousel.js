@@ -6,23 +6,17 @@ const dataCarousel = [
     {
         src: Superjoli,
         name: 'superjoli',
-        description: 'La page de garde du projet Superjoli',
-        position: 'position',
-        url: 'superjoli'
+        description: 'La page de garde du projet Superjoli'
     },
     {
         src: Bamboo,
         name: 'bamboo-step',
-        description: 'La page de garde du projet bamboo-Step',
-        position: 'position',
-        url: 'bamboo-step'
+        description: 'La page de garde du projet bamboo-Step'
     },
     {
         src: Ikmusic,
         name: 'ik-music',
-        description: 'La page de garde du projet Ik-Music',
-        position: 'position',
-        url: 'ik-music'
+        description: 'La page de garde du projet Ik-Music'
     }
 ]
 
