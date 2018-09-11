@@ -1,13 +1,12 @@
 #carousel {
     @include flexAlign(row, center, center);
     position: absolute;
-    width: 25vw;
+    width: 100%;
     height: 27vh;
-    top: 73vh;
+    top: 62vh;
     right: 0;
     z-index: 6;
     overflow: hidden;
-
     #focus-project {
         z-index: 1;
     }

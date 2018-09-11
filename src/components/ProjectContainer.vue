@@ -1,5 +1,5 @@
 <template>
-  <div id="project-container">
+  <main id="project-container">
     <h2 id="project-title" ref="titleProject"><span>{{title}}</span></h2>
     <transition
       mode="out-in"
@@ -8,11 +8,12 @@
     </transition>
     <ProjectDetail :projectDetails='projectDetails' :showProjectDetail="showProjectDetail"/>
     <Carousel :dataProject="dataProject"/>
-  </div>
+    <router-link to="/accueil/bonjour" id="accueil-link"><span id="link-text">retour à l'accueil</span><span id="icone"></span></router-link>
+  </main>
 </template>
 
 <script>
-import Project from './Project'
+import ProjectAside from './ProjectAside'
 import ProjectDetail from './ProjectDetail'
 import Carousel from './Carousel'
 import { TweenMax, TimelineMax } from 'gsap/TweenMax'
@@ -28,7 +29,7 @@ export default {
     }
   },
   components: {
-    'Project': Project,
+    'ProjectAside': ProjectAside,
     'ProjectDetail': ProjectDetail,
     'Carousel': Carousel
   },

@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import About from '@/components/About'
 import ProjectContainer from '@/components/ProjectContainer'
-import Project from '@/components/Project'
+import ProjectAside from '@/components/ProjectAside'
+import Bonjour from '@/components/Bonjour'
+import Competences from '@/components/Competences'
 
 Vue.use(Router)
 
@@ -11,7 +13,19 @@ export default new Router({
     {
       path: '/accueil',
       name: 'About',
-      component: About
+      component: About,
+      children: [
+        {
+          path: 'bonjour',
+          name: 'Bonjour',
+          component: Bonjour
+        },
+        {
+          path: 'competences',
+          name: 'Competences',
+          component: Competences
+        }
+      ]
     },
     {
       path: '/projet',
@@ -20,8 +34,8 @@ export default new Router({
       children: [
         {
           path: ':project',
-          name: 'Project',
-          component: Project
+          name: 'ProjectAside',
+          component: ProjectAside
         }
       ]
     }

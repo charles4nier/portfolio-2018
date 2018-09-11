@@ -1,27 +1,19 @@
 <template>
-  <div id="project-template">
-    <aside>
-      <div id="project-description">
-        <p ref="description"><span>{{projectDetails[0].span}}</span>{{projectDetails[0].presentation}}</p>
-        <button @click="show"><span></span>En savoir plus</button>
-        <a :href="projectDetails[0].link" target='_blank' data-hover="Visiter le site"><span>Visiter le site</span></a>
+  <aside id="project-aside">
+    <div id="project-description">
+      <p ref="description"><span>{{projectDetails[0].span}}</span>{{projectDetails[0].presentation}}</p>
+      <div>
+        <button @click="show" target='_blank' data-hover="En savoir plus"><span>En savoir plus</span></button>
       </div>
-      <div id="project-nav-container">
-        <p>Autres projets :</p>
-        <div id="button-container">
-          <button :data-key="projectDetails[0].key" @click="changePage" data-action="previous"></button>
-          <button :data-key="projectDetails[0].key" @click="changePage" data-action="next"></button>
-        </div>       
-      </div>
-    </aside>
-  </div>
+    </div>
+  </aside>
 </template>
 
 <script>
 import { TweenMax, TimelineMax } from 'gsap/TweenMax'
 
 export default {
-  name: 'Project',
+  name: 'ProjectAside',
   props: ['projectDetails', 'changePage'],
   data () {
     return {
@@ -47,7 +39,7 @@ export default {
         .to('#project-detail-container .background-part', 1, {scaleX: 1, ease: Expo.easeInOut}, '-=1.3')
         .to('#part-1', .6, {yPercent: -10, opacity: 1, ease: Expo.easeOut}, '-=.6')
         .to('.detail-row img', .5, {opacity: 1, ease: Expo.easeOut}, '-=.6')
-        .to('#project-detail-title span', .4, {yPercent: -40, opacity: 1, ease: Quad.easeOut}, '-=.6')
+        .to('#project-detail-title span', .6, {yPercent: -40, opacity: 1, ease: Quad.easeOut}, '-=.4')
         .to('#close-detail', .8, {yPercent: 500, opacity: 1, ease: Power4.easeOut}, '-=.6')
         
 
@@ -72,7 +64,7 @@ export default {
         }, 1000)
       } else {
         document.querySelector('.background-part:last-child').classList.remove('active')
-        this.playAnimDetails.reverse(1)
+        this.playAnimDetails.reverse(1.3)
         setTimeout(function () {
           document.querySelector('#project-detail-container').style.zIndex = -1
         }, 1600)

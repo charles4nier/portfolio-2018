@@ -1,32 +1,5 @@
 <template>
   <div id="app">
-    <!-- <button id="open-menu" @click="toggleMenu" v-bind:class="{ active: openMenu }">
-      <span>menu</span>
-    </button>
-    <nav ref="mainNav" id="main-nav">
-      <ul id="link-container">
-        <li class="link" :class="{ active: aboutActive }">
-          <router-link to="/accueil" @click.native="toggleMenu">Accueil</router-link>
-        </li>
-        <li class="link" :class="{ active: projectActive}">
-          <router-link to="/projet/superjoli" @click.native="toggleMenu">Projets</router-link>
-        </li>
-        <li class="link external-link">
-          <a href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank">Linkedin</a>
-        </li>
-        <li class="link external-link">
-          <a href="https://github.com/charles4nier" target="_blank">Github</a>
-        </li>
-        <li class="link" id="contact-container">
-          <span>Contact</span>
-          <ul>
-            <li id="mail"><a>charles.4nier@gmail.com</a></li>
-            <li id="phone"><a>06.98.48.36.58</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div id="black-calc" @click="toggleMenu"></div>
-    </nav> -->
     <div id="canvas-container" ref="canvasContainer">
     </div>
     <transition
@@ -51,8 +24,6 @@ export default {
       hoverEffect: null,
       lastSrc: '',
       lastKey: null,
-      openMenu: false,
-      animMenu: null,
       projectActive: null,
       aboutActive: null
     }
@@ -109,40 +80,14 @@ export default {
         image2: this.projectDetails[0].src,
         displacementImage: this.projectDetails[0].disp
       })
-    },
-    toggleMenu: function() {
-      this.openMenu = !this.openMenu
-    },
-    menuAnimation: function () {
-      let tl = new TimelineMax()
-      tl.to('#link-container', .8, {xPercent: 100, ease: Quart.easeInOut})
-        .to('#black-calc', 0.3, {opacity: 0.6}, '-=.5')
-        .staggerTo('.link', 0.6, {opacity: 1, xPercent: 60, ease: Quad.easeOut}, '.13', '-=.7')
-        .to('#phone', 0.6, {opacity: 1, yPercent: -30})
-        .to('#mail', 0.6, {opacity: 1, yPercent: -30}, '-=0.6')
-
-      tl.pause()
-      return tl
     }
   },
   mounted () {
     this.initCanvas(null, null)
-    this.animMenu = this.menuAnimation()
   },
   watch: {
     '$route' (to, from) {
       this.initData(this.hoverEffect.anim)
-    },
-    '$data.openMenu':  function (newVal, oldVal) {
-      if(newVal === true) {
-        this.$refs.mainNav.style.zIndex = 7;
-        this.animMenu.play()
-      } else {
-        this.animMenu.reverse(1.4)
-        setTimeout(() => {
-          this.$refs.mainNav.style.zIndex = -1
-        }, 1400)
-      }
     }
   }
 }

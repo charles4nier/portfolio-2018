@@ -1,0 +1,79 @@
+#project-aside {
+  width: 25vw;
+  height: 62vh;
+  border-left: 1px solid color(grey1);
+  @include flexAlign(column, flex-start, center);
+  #project-description {
+    @include flexAlign(column, flex-start, center);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 22% 12% 0 12%;
+    background-color: color(white);
+    overflow: hidden;
+    p { 
+        font-size: 1.4vw;
+        line-height: 1.6;
+        color: color(grey4);
+        transform-origin: center top;
+        height: 50%;
+        span {
+            color: color(yellow);
+            font-family: 'OpenSans-Bold';
+            text-transform: uppercase;
+        }
+    }
+
+    div {
+      @include flexAlign(column, space-around, center);
+      width: 100%;
+      height: 40%;
+      margin-top: 5%;
+    }
+
+    button {
+      @include flexAlign(row,center, center);
+      position: relative;
+      align-self: center;
+      display: inline-block;
+      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+      font-size: 12px;
+      border: 1px solid color(yellow);
+      padding: 5% 10%;
+      overflow: hidden;
+      text-transform: uppercase;
+      font-family: 'Roboto-Bold'; 
+      color: color(grey4);
+      cursor: pointer;
+      &::before {
+        @include flexAlign(row,center, center);
+        content: attr(data-hover);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transform: translateY(100%);  
+        transition: transform .4s;
+      }
+      span {
+        height: 100%;
+        width: 100%;
+        @include flexAlign(row, center, center);
+        transform: translateY(0);
+        transition: transform .5s cubic-bezier(0,.6,.13,.82) .1s;
+      }
+
+      &:hover {
+        span {
+          transform: translateY(-200%);
+          transition: transform .4s cubic-bezier(0,.6,.13,.82);
+        }
+        &::before {
+          transform: translateY(0);
+          transition: transform .4s cubic-bezier(0,.6,.13,.82) .1s;
+        }
+      }
+    }
+  }  
+}  
