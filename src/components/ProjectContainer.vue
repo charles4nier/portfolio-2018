@@ -8,7 +8,7 @@
     </transition>
     <ProjectDetail :projectDetails='projectDetails' :showProjectDetail="showProjectDetail"/>
     <Carousel :dataProject="dataProject"/>
-    <router-link to="/accueil/bonjour" id="accueil-link"><span id="link-text">retour à l'accueil</span><span id="icone"></span></router-link>
+    <router-link to="/accueil" id="accueil-link"><span id="link-text">retour à l'accueil</span><span id="icone"></span></router-link>
   </main>
 </template>
 

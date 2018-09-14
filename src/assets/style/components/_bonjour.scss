@@ -1,41 +1,71 @@
 .bonjour-container {
+    transform: translateY(-30%);
+    opacity: 0;
+    transition: all 1s cubic-bezier(.54,.73,0,1.02);
     .main-bonjour {
         display: flex;
-        width: 60%;
+        width: 64%;
         flex-direction: column;
-        background-color: white;
         padding: 8% 6%;
-        margin-left: -17.5%;
-        // box-shadow: 8px 8px 30px 1.2px rgba(0,0,0,.1);
-        p:first-child {
-            font-size: 1.5vw;
-            font-family: 'Roboto-Bold';
-            text-transform: uppercase;
-            margin-bottom: 5%;
-        }
-
-        p:last-child {
-            font-size: 3vw;
-        }
-        .strong {
-            color: color(yellow);
-        }
+        font-size: 3vw;
+        margin-top: -13%;
+        pointer-events: none;
+        transition: transform 1.4s cubic-bezier(.54,.73,0,1.02);
+        transform: translateY(-30%);
     }
 
     .sub-bonjour {
-        width: 50%;
-        background-color: color(yellow);
-        padding: 8%;
-        margin-top: -4%;
-        margin-left: 15%;
-        color: color(white2);
+        width: 64%;
+        padding: 8% 12% 8% 6%;
+        margin-top: -10%;
+        color: color(grey2);
         font-size: 1.5vw;
-        // box-shadow: 8px 8px 30px 1.2px rgba(0,0,0,.1);
-        p:first-child {
-            margin-bottom: 8%;
+        
+        p {
+            position: relative;
+            transition: transform 1.4s cubic-bezier(.54,.73,0,1.02) .3s;
+            transform: translateY(-30%);
+            &:first-child {
+                margin-bottom: 6%;
+
+                &::after {
+                    content: '';
+                    width: 20.5%;
+                    height: 4px;
+                    position: absolute;
+                    top: -50%;
+                    left: 0;
+                    background: color(yellow);
+                }
+            }
+
+            &:last-child {
+                transform: translateY(-20%);
+                transition: transform 1.4s cubic-bezier(.54,.73,0,1.02) 1s;
+                transform: translateY(0);
+            }
         }
-        .strong {
-            color: color(grey4);
+    }
+
+    &.second-page {
+        transition: all 1.2s cubic-bezier(.54,.73,0,1.02) .3s;
+        transform: translateY(0);
+        opacity: 1;
+        .main-bonjour {
+            transition: transform 1.4s cubic-bezier(.54,.73,0,1.02) .2s;
+            transform: translateY(0);
+        }
+        .sub-bonjour {
+            p {
+                transition: transform 1.4s cubic-bezier(.54,.73,0,1.02) .3s;
+                transform: translateY(0);
+
+                &:last-child {
+                    transition: transform 1.4s cubic-bezier(.54,.73,0,1.02);
+                    transform: translateY(0);
+                }
+            }
+            
         }
     }
 }
